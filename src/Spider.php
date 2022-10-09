@@ -9,10 +9,15 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class Spider
 {
-    public static array $hashCache = [];
+    public static ?array $faked = null;
 
     public function __construct(protected readonly Driver $driver)
     {
+    }
+
+    public static function fake(array $responses = [])
+    {
+        static::$faked = $responses;
     }
 
     public function scrape(string $url, array $options = []): string
@@ -39,7 +44,25 @@ class Spider
             ],
         );
 
-        exec($cmd);
+        if (static::$faked !== null) {
+            $html = '';
+
+            if (isset(static::$faked[$url])) {
+                $html = static::$faked[$url];
+
+                unset(static::$faked[$url]);
+            } elseif (isset(static::$faked['*'])) {
+                $html = static::$faked['*'];
+
+                unset(static::$faked['*']);
+            }
+
+            file_put_contents($output, $html);
+        }
+
+        if (static::$faked === null) {
+            exec($cmd);
+        }
 
         if (! file_exists($output) || empty(filesize($output))) {
             throw new ApiConnectionFailedException(

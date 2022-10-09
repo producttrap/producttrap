@@ -43,6 +43,6 @@ trait DriverCache
 
     public function getCacheKey(string $name): string
     {
-        return 'producttrap.' . $this->getName() . '.' . $name;
+        return 'producttrap.'.$this->getName().'.'.$name;
     }
 }

@@ -17,6 +17,6 @@ class Price extends DataTransferObject
 
     public function format(): string
     {
-        return '$' . number_format($this->amount, 2);
+        return '$'.number_format($this->amount, 2);
     }
 }

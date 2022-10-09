@@ -16,14 +16,14 @@ class UnitAmount extends DataTransferObject
 
     public function format(): string
     {
-        return $this->amount . $this->unit->value;
+        return $this->amount.$this->unit->value;
     }
 
     public static function parse(string $string): UnitAmount
     {
         preg_match('/([\d\.]+)\W*(l|ml|g|kg|mg|ea|each|pc|piece)/i', $string, $matches);
 
-        if (!isset($matches[1])) {
+        if (! isset($matches[1])) {
             return new self(
                 unit: Unit::EACH,
                 amount: 1,

@@ -16,7 +16,7 @@ class UnitPrice extends DataTransferObject
 
     public function label(): string
     {
-        return $this->price->format() . ' / ' . $this->unitAmount->format();
+        return $this->price->format().' / '.$this->unitAmount->format();
     }
 
     public static function determine(?Price $price = null, ?UnitAmount $unitAmount = null, ?string $unitPrice = null): ?UnitPrice
