@@ -33,15 +33,28 @@ class Spider
             throw new Exception('Could not create temporary file for crawler output file.');
         }
 
-        $cmd = vsprintf(
-            '%s --headless --dump-dom --user-agent="%s" --wait-until="networkidle2" %s %s > %s',
-            [
-                $config['binary'],
-                $config['user_agent'],
-                $config['options'] ?? '',
-                $url,
-                $output,
-            ],
+        $options = array_replace([
+            'headless',
+            'dump-dom',
+            'user-agent' => $config['user_agent'],
+            'wait-until' => 'networkidle2',
+        ], $config['arguments'] ?? []);
+
+        $args = [];
+        foreach ($options as $key => $value) {
+            $format = is_int($key) ? '--%s' : '--%s=%s';
+            $bindings = is_int($key) ? [(string) $value] : [(string) $key, json_encode($value)];
+
+            $args[] = vsprintf($format, $bindings);
+        }
+        $args = implode(' ', $args);
+
+        $cmd = sprintf(
+            '%s %s %s > %s',
+            $config['binary'], // chromium
+            $args, // --headless --dump-dom --user-agent="..." --wait-until="networkidle2"
+            $url, // https://www.woolworths.com.au/shop/productdetails/257360/john-west-tuna-olive-oil-blend
+            $output, // /tmp/producttrap/abc123
         );
 
         if (static::$faked !== null) {
