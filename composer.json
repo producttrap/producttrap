@@ -1,0 +1,62 @@
+{
+    "name": "producttrap/producttrap",
+    "type": "library",
+    "description": "A driver-based product tracking library for PHP",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.4",
+        "illuminate/contracts": "^9.34",
+        "illuminate/support": "^9.34",
+        "nunomaduro/larastan": "^2.2",
+        "spatie/data-transfer-object": "^3.7",
+        "spatie/laravel-package-tools": "^1.13",
+        "symfony/dom-crawler": "^6.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.2",
+        "orchestra/testbench": "^7.9",
+        "pestphp/pest": "^1.21.1",
+        "phpstan/phpstan": "^1.4.6",
+        "symfony/var-dumper": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProductTrap\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ProductTrap\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test:types": "phpstan analyse --ansi --memory-limit=-1",
+        "test:unit": "pest --colors=always",
+        "test": [
+            "@test:types",
+            "@test:unit"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "ProductTrap\\ProductTrapServiceProvider"
+            ],
+            "aliases": {
+                "ProductTrap": "ProductTrap\\Facades\\ProductTrap"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
