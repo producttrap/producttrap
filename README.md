@@ -51,7 +51,7 @@ use ProductTrap\Facades\ProductTrap;
 ProductTrap::find('ABCDEFG12345');
 
 // Using a specific driver with the facade
-ProductTrap::driver('royal_mail')->find('ABCDEFG12345');
+ProductTrap::driver('target_australia')->find('194353456');
 ```
 
 ## Change log
@@ -75,6 +75,7 @@ If you discover any security related issues, please email security@voke.dev inst
 ## Credits
 
 - [Owen Voke][link-author]
+- [Bradie Tilley][link-author2]
 - [All Contributors][link-contributors]
 
 ## License
@@ -105,4 +106,5 @@ Read more about Treeware at [treeware.earth][link-treeware].
 [link-treeware]: https://treeware.earth
 [link-treeware-gifting]: https://ecologi.com/owenvoke?gift-trees
 [link-author]: https://github.com/owenvoke
+[link-author2]: https://github.com/bradietilley
 [link-contributors]: ../../contributors
