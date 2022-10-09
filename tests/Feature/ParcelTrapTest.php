@@ -51,8 +51,8 @@ it('can call `find` on a ProductTrap driver', function () {
         ->identifier->toBe('abcdefg')
         ->status->toBe(Status::Unknown)
         ->status->description()->toBe('Unknown')
-        ->summary->toBe('This is a summary for the null driver')
-        ->estimatedDelivery->toEqual(new DateTimeImmutable('2022-01-01'));
+        ->sku->toBe('null')
+        ->name->toBe('Null product');
 });
 
 it('can call `find` on the default ProductTrap driver', function () {

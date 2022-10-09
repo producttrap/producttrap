@@ -17,19 +17,11 @@ enum Unit: string
 
     public static function parse(string $text): Unit
     {
-        // before slash or 'per'
-        $text = preg_split('/(per|\/)/', $text)[0];
-
-        // remove spaces
+        $parts = preg_split('/(per|\/)/', $text);
+        $text = ($parts === false) ? $text : $parts[0];
         $text = str_replace(' ', '', $text);
-
-        // remove numbers and dots
         $text = preg_replace('/[\d\.]+/', '', $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        // remove 's'
+        $text = strtolower((string) $text);
         $text = rtrim($text, 's');
 
         $map = [

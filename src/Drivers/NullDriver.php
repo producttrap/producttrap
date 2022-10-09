@@ -3,13 +3,20 @@
 namespace ProductTrap\Drivers;
 
 use ProductTrap\Contracts\Driver;
+use ProductTrap\DTOs\Brand;
 use ProductTrap\DTOs\Product;
+use ProductTrap\DTOs\Results;
 use ProductTrap\Enums\Status;
 use ProductTrap\Exceptions\ApiAuthenticationFailedException;
 use ProductTrap\Exceptions\ApiLimitReachedException;
 
 class NullDriver implements Driver
 {
+    public function getName(): string
+    {
+        return 'null';
+    }
+
     public function find(string $identifier, array $parameters = []): Product
     {
         if ($identifier === 'MOCK-AUTHENTICATION-FAILED') {
@@ -29,7 +36,7 @@ class NullDriver implements Driver
         return new Product(
             identifier: $identifier,
             status: Status::Unknown,
-            sku: '000',
+            sku: 'null',
             name: 'Null product',
             description: 'A null product for the null driver',
             currency: null,
@@ -41,9 +48,19 @@ class NullDriver implements Driver
             // "relations"
             images: [],
             categories: [],
-            brand: null,
+            brand: new Brand(
+                identifier: 'null_brand',
+                name: 'Null brand',
+            ),
 
             raw: [],
+        );
+    }
+
+    public function search(string $keywords, array $parameters = []): Results
+    {
+        return new Results(
+            products: [],
         );
     }
 }

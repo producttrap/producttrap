@@ -2,21 +2,31 @@
 
 namespace ProductTrap;
 
+use Exception;
+use ProductTrap\Contracts\Driver;
+use ProductTrap\Exceptions\ApiConnectionFailedException;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Spider
 {
     public static array $hashCache = [];
 
-    public static function scrape(string $url, array $options = []): string
+    public function __construct(protected readonly Driver $driver)
+    {
+    }
+
+    public function scrape(string $url, array $options = []): string
     {
         $config = array_replace([
             'binary' => '/snap/bin/chromium',
             'user_agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/106.0',
         ], $options);
 
-        // $url = 'https://woolworths.com.au/shop/productdetails/257360/john-west-tuna-olive-oil-blend';
         $output = tempnam(sys_get_temp_dir(), 'producttrap');
+
+        if ($output === false) {
+            throw new Exception('Could not create temporary file for crawler output file.');
+        }
 
         $cmd = vsprintf(
             '%s --headless --dump-dom --user-agent="%s" --wait-until="networkidle2" %s %s > %s',
@@ -31,15 +41,22 @@ class Spider
 
         exec($cmd);
 
+        if (! file_exists($output) || empty(filesize($output))) {
+            throw new ApiConnectionFailedException(
+                driver: $this->driver,
+                resourceOrUrl: $url
+            );
+        }
+
         $html = file_get_contents($output);
         unlink($output);
 
-        return $html;
+        return (string) $html;
     }
 
-    public static function crawl(string $url): Crawler
+    public function crawl(string $url): Crawler
     {
-        $html = static::scrape($url);
+        $html = $this->scrape($url);
 
         return new Crawler($html);
     }
