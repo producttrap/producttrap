@@ -19,7 +19,7 @@ class ApiLimitReachedException extends ProductTrapDriverException
                 'The API limit of %s requests per %s has been reached for the %s driver',
                 $limit,
                 $period,
-                self::getDriverName($driver),
+                $driver->getName(),
             ),
             code: 429,
             previous: $previous,

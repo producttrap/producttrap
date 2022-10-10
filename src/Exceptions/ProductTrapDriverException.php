@@ -17,17 +17,4 @@ abstract class ProductTrapDriverException extends Exception implements ProductTr
             previous: $previous,
         );
     }
-
-    public function driverName(): string
-    {
-        return self::getDriverName($this->driver);
-    }
-
-    protected static function getDriverName(Driver $driver): string
-    {
-        $class = get_class($driver);
-        $class = str_contains($class, '\\') ? substr($class, strrpos($class, '\\') + 1) : $class;
-
-        return str_replace(['ProductTrap', 'Driver'], '', $class);
-    }
 }

@@ -17,7 +17,7 @@ class ApiConnectionFailedException extends ProductTrapDriverException
             message: sprintf(
                 'The connection to %s has failed for the %s driver',
                 $resourceOrUrl,
-                self::getDriverName($driver),
+                $driver->getName(),
             ),
             code: 503,
             previous: $previous,

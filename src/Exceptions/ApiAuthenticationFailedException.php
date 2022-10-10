@@ -15,7 +15,7 @@ class ApiAuthenticationFailedException extends ProductTrapDriverException
             driver: $driver,
             message: sprintf(
                 'The API authentication failed for the %s driver',
-                self::getDriverName($driver),
+                $driver->getName(),
             ),
             code: 403,
             previous: $previous,
