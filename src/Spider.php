@@ -15,7 +15,7 @@ class Spider
     {
     }
 
-    public static function fake(array $responses = [])
+    public static function fake(array $responses = []): void
     {
         static::$faked = $responses;
     }
