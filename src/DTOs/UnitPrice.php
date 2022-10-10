@@ -28,18 +28,16 @@ class UnitPrice extends DataTransferObject
         if ($unitPrice !== null) {
             preg_match('/\$([\d\.,]+)\W*([\d\.,]+)?(g|kg|mg|ml|l|ea|pc|piece)/i', $unitPrice, $matches);
 
-            if (empty($matches[1])) {
-                return null;
+            if (!empty($matches[1])) {
+                $price = new Price(
+                    amount: (float) str_replace(',', '', $matches[1]),
+                );
+
+                $unitAmount = new UnitAmount(
+                    unit: Unit::parse($matches[3]),
+                    amount: (float) str_replace(',', '', ($matches[2] === '') ? '1' : $matches[2]),
+                );
             }
-
-            $price = new Price(
-                amount: (float) str_replace(',', '', $matches[1]),
-            );
-
-            $unitAmount = new UnitAmount(
-                unit: Unit::parse($matches[3]),
-                amount: (float) str_replace(',', '', ($matches[2] === '') ? '1' : $matches[2]),
-            );
         }
 
         if ($price === null || $unitAmount === null) {
