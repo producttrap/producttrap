@@ -63,7 +63,7 @@ enum Unit: string
         };
 
         $amountFactor = $factor / $unitAmount->amount;
-        $pricePerUnitTo = $price * $amountFactor;
+        $pricePerUnitTo = round($price * $amountFactor, 2);
 
         return new UnitPrice(
             unitAmount: new UnitAmount(
