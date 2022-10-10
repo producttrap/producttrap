@@ -7,7 +7,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Buy us a tree][ico-treeware-gifting]][link-treeware-gifting]
 
-A driver-based product tracking library for PHP
+A driver-based product info scraping library for PHP
 
 ## Install
 

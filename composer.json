@@ -1,7 +1,7 @@
 {
     "name": "producttrap/producttrap",
     "type": "library",
-    "description": "A driver-based product tracking library for PHP",
+    "description": "A driver-based product info scraping library for PHP",
     "license": "MIT",
     "require": {
         "php": "^8.1",
