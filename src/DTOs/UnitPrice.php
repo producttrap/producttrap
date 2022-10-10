@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ProductTrap\DTOs;
 
+use ProductTrap\Enums\Currency;
 use ProductTrap\Enums\Unit;
 use Spatie\DataTransferObject\Attributes\Strict;
 
@@ -19,7 +20,7 @@ class UnitPrice extends DataTransferObject
         return $this->price->format().' / '.$this->unitAmount->format();
     }
 
-    public static function determine(?Price $price = null, ?UnitAmount $unitAmount = null, ?string $unitPrice = null): ?UnitPrice
+    public static function determine(?Price $price = null, ?UnitAmount $unitAmount = null, ?string $unitPrice = null, ?Currency $currency = null): ?UnitPrice
     {
         if ($price === null && $unitAmount === null && $unitPrice === null) {
             return null;
@@ -31,6 +32,7 @@ class UnitPrice extends DataTransferObject
             if (! empty($matches[1])) {
                 $price = new Price(
                     amount: (float) str_replace(',', '', $matches[1]),
+                    currency: $price->currency ?? $currency,
                 );
 
                 $unitAmount = new UnitAmount(
