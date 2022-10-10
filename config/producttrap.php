@@ -28,11 +28,7 @@ return [
 
     'drivers' => [
 
-        // 'royal_mail' => [
-        //     'client_id' => env('PRODUCTTRAP_ROYAL_MAIL_CLIENT_ID'),
-        //     'client_secret' => env('PRODUCTTRAP_ROYAL_MAIL_CLIENT_SECRET'),
-        //     'accept_terms' => env('PRODUCTTRAP_ROYAL_MAIL_ACCEPT_TERMS', true),
-        // ],
+        // ...
 
     ],
 
