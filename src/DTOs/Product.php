@@ -26,8 +26,6 @@ class Product extends DataTransferObject
 
     public ?string $ingredients = null;
 
-    public ?Currency $currency = null;
-
     public ?Price $price = null;
 
     public ?UnitAmount $unitAmount = null;

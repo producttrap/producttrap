@@ -15,8 +15,12 @@ class Price extends DataTransferObject
 
     public ?string $saleName = null;
 
+    public ?Currency $currency = null;
+
     public function format(): string
     {
-        return '$'.number_format($this->amount, 2);
+        $currency = ($this->currency) ? $this->currency->symbol() : '$';
+
+        return $currency . number_format($this->amount, 2);
     }
 }
