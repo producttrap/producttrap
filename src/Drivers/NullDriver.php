@@ -39,7 +39,6 @@ class NullDriver implements Driver
             sku: 'null',
             name: 'Null product',
             description: 'A null product for the null driver',
-            currency: null,
             url: null,
             price: null,
             unitAmount: null,
