@@ -22,6 +22,6 @@ class Price extends DataTransferObject
     {
         $currency = ($this->currency) ? $this->currency->symbol() : '$';
 
-        return $currency . number_format($this->amount, 2);
+        return $currency.number_format($this->amount, 2);
     }
 }
