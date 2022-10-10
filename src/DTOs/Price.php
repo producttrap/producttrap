@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ProductTrap\DTOs;
 
+use ProductTrap\Enums\Currency;
 use Spatie\DataTransferObject\Attributes\Strict;
 
 #[Strict]
