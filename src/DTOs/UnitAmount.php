@@ -21,7 +21,7 @@ class UnitAmount extends DataTransferObject
 
     public static function parse(string $string): UnitAmount
     {
-        preg_match('/([\d\.]+)\W*(l|ml|g|kg|mg|ea|each|pc|piece)/i', $string, $matches);
+        preg_match('/([\d.]+)\W*(l|ml|g|kg|mg|ea|each|pc|piece)/i', $string, $matches);
 
         if (! isset($matches[1])) {
             return new self(

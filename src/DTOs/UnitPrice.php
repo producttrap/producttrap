@@ -27,7 +27,7 @@ class UnitPrice extends DataTransferObject
         }
 
         if ($unitPrice !== null) {
-            preg_match('/\$([\d\.,]+)\W*([\d\.,]+)?(g|kg|mg|ml|l|ea|pc|piece)/i', $unitPrice, $matches);
+            preg_match('/\$([\d.,]+)\W*([\d.,]+)?(g|kg|mg|ml|l|ea|pc|piece)/i', $unitPrice, $matches);
 
             if (! empty($matches[1])) {
                 $price = new Price(
