@@ -38,8 +38,8 @@ class Query extends DataTransferObject
 
     /**
      * If a driver does not support Brand or Category pages, calling toString
-     * to a string will return the brand, category or search as a string which
-     * can then be used in a standard search page.
+     * will cast this object to a string and will return the brand, category
+     * and/or search query string which can then be used in a standard search
      */
     public function toString(): string
     {
