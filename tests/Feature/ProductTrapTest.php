@@ -70,7 +70,7 @@ it('can call `search` on a ProductTrap driver and pass in a search query', funct
 
     expect($client->search(Query::fromKeywords('blah')))
         ->toBeInstanceOf(Results::class)
-        ->query->search->toBe('blah')
+        ->query->keywords->toBe('blah')
         ->query->brand->toBeNull()
         ->query->category->toBeNull()
         ->query->toString()->toBe('blah')
@@ -86,7 +86,7 @@ it('can call `search` on a ProductTrap driver and pass in a brand query', functi
 
     expect($client->search(Query::fromBrand($brand)))
         ->toBeInstanceOf(Results::class)
-        ->query->search->toBeNull()
+        ->query->keywords->toBeNull()
         ->query->brand->toBe($brand)
         ->query->category->toBeNull()
         ->query->toString()->toBe('Null brand')
@@ -102,7 +102,7 @@ it('can call `search` on a ProductTrap driver and pass in a category query', fun
 
     expect($client->search(Query::fromCategory($category)))
         ->toBeInstanceOf(Results::class)
-        ->query->search->toBeNull()
+        ->query->keywords->toBeNull()
         ->query->brand->toBeNull()
         ->query->category->toBe($category)
         ->query->toString()->toBe('Null category')

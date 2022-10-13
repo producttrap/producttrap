@@ -9,7 +9,7 @@ use Spatie\DataTransferObject\Attributes\Strict;
 #[Strict]
 class Query extends DataTransferObject
 {
-    public ?string $search = null;
+    public ?string $keywords = null;
 
     public ?Category $category = null;
 
@@ -18,7 +18,7 @@ class Query extends DataTransferObject
     public static function fromKeywords(string $keywords): self
     {
         return new self(
-            search: $keywords,
+            keywords: $keywords,
         );
     }
 
@@ -44,7 +44,7 @@ class Query extends DataTransferObject
     public function toString(): string
     {
         return trim(implode(' ', array_filter([
-            $this->search,
+            $this->keywords,
             $this->category?->name,
             $this->brand?->name,
         ])));
