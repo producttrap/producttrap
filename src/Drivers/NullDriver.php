@@ -5,7 +5,6 @@ namespace ProductTrap\Drivers;
 use ProductTrap\Contracts\Driver;
 use ProductTrap\DTOs\Brand;
 use ProductTrap\DTOs\Product;
-use ProductTrap\DTOs\Results;
 use ProductTrap\Enums\Status;
 use ProductTrap\Exceptions\ApiAuthenticationFailedException;
 use ProductTrap\Exceptions\ApiLimitReachedException;
@@ -53,13 +52,6 @@ class NullDriver implements Driver
             ),
 
             raw: [],
-        );
-    }
-
-    public function search(string $keywords, array $parameters = []): Results
-    {
-        return new Results(
-            products: [],
         );
     }
 }
