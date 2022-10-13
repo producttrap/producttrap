@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 use Illuminate\Contracts\Config\Repository;
 use ProductTrap\Drivers\NullDriver;
+use ProductTrap\DTOs\Brand;
+use ProductTrap\DTOs\Category;
 use ProductTrap\DTOs\Product;
+use ProductTrap\DTOs\Query;
+use ProductTrap\DTOs\Results;
 use ProductTrap\Enums\Status;
 use ProductTrap\ProductTrap;
 
@@ -59,4 +63,59 @@ it('can call `find` on the default ProductTrap driver', function () {
     $client = $this->app->get(ProductTrap::class);
 
     expect($client->find('abcdefg'))->toBeInstanceOf(Product::class);
+});
+
+it('can call `search` on a ProductTrap driver and pass in a search query', function () {
+    $client = $this->app->get(ProductTrap::class)->driver('null');
+
+    expect($client->search(Query::fromKeywords('blah')))
+        ->toBeInstanceOf(Results::class)
+        ->query->search->toBe('blah')
+        ->query->brand->toBeNull()
+        ->query->category->toBeNull()
+        ->query->toString()->toBe('blah')
+        ->products->toHaveCount(3);
+});
+
+it('can call `search` on a ProductTrap driver and pass in a brand query', function () {
+    $client = $this->app->get(ProductTrap::class)->driver('null');
+    $brand = new Brand(
+        identifier: 'null_brand',
+        name: 'Null brand',
+    );
+
+    expect($client->search(Query::fromBrand($brand)))
+        ->toBeInstanceOf(Results::class)
+        ->query->search->toBeNull()
+        ->query->brand->toBe($brand)
+        ->query->category->toBeNull()
+        ->query->toString()->toBe('Null brand')
+        ->products->toHaveCount(3);
+});
+
+it('can call `search` on a ProductTrap driver and pass in a category query', function () {
+    $client = $this->app->get(ProductTrap::class)->driver('null');
+    $category = new Category(
+        identifier: 'null_category',
+        name: 'Null category',
+    );
+
+    expect($client->search(Query::fromCategory($category)))
+        ->toBeInstanceOf(Results::class)
+        ->query->search->toBeNull()
+        ->query->brand->toBeNull()
+        ->query->category->toBe($category)
+        ->query->toString()->toBe('Null category')
+        ->products->toHaveCount(3);
+});
+
+it('can specify the current page of a ProductTrap driver in the context of a query', function () {
+    $client = $this->app->get(ProductTrap::class)->driver('null');
+
+    $client->page(2);
+    $client->lastPage(4);
+
+    expect($client)->toBeInstanceOf(NullDriver::class)
+        ->getPage()->toBe(2)
+        ->getLastPage()->toBe(4);
 });

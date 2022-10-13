@@ -3,14 +3,22 @@
 namespace ProductTrap\Drivers;
 
 use ProductTrap\Contracts\Driver;
+use ProductTrap\Contracts\SupportsPagination;
+use ProductTrap\Contracts\SupportsSearches;
 use ProductTrap\DTOs\Brand;
 use ProductTrap\DTOs\Product;
+use ProductTrap\DTOs\Query;
+use ProductTrap\DTOs\Results;
 use ProductTrap\Enums\Status;
 use ProductTrap\Exceptions\ApiAuthenticationFailedException;
 use ProductTrap\Exceptions\ApiLimitReachedException;
 
-class NullDriver implements Driver
+class NullDriver implements Driver, SupportsSearches, SupportsPagination
 {
+    protected int $page = 1;
+
+    protected int $lastPage = 1;
+
     public function getName(): string
     {
         return 'null';
@@ -53,5 +61,42 @@ class NullDriver implements Driver
 
             raw: [],
         );
+    }
+
+    public function search(Query $query, array $parameters = []): Results
+    {
+        return new Results(
+            query: $query,
+            products: [
+                $this->find('MOCK-PRODUCT-1'),
+                $this->find('MOCK-PRODUCT-2'),
+                $this->find('MOCK-PRODUCT-3'),
+            ],
+            raw: [],
+        );
+    }
+
+    public function page(int $page): self
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
+    public function lastPage(int $lastPage): self
+    {
+        $this->lastPage = $lastPage;
+
+        return $this;
+    }
+
+    public function getLastPage(): int
+    {
+        return $this->lastPage;
     }
 }
