@@ -32,4 +32,44 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | ProductTrap Browsers
+    |--------------------------------------------------------------------------
+    |
+    | Here are the settings for the ProductTrap browsers for your application.
+    |
+    */
+
+    'browsers' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | Default ProductTrap Browser Name
+        |--------------------------------------------------------------------------
+        |
+        | Here you may specify which of the ProductTrap browsers below you wish
+        | to use as your default browser for all product work.
+        |
+        */
+
+        'default' => env('PRODUCTTRAP_DEFAULT_BROWSER'),
+
+        /*
+        |--------------------------------------------------------------------------
+        | ProductTrap Browsers
+        |--------------------------------------------------------------------------
+        |
+        | Here are each of the ProductTrap browsers setup for your application.
+        |
+        */
+
+        'drivers' => [
+
+            // ...
+
+        ],
+
+    ],
+
 ];
