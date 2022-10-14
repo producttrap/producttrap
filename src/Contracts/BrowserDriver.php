@@ -12,5 +12,5 @@ interface BrowserDriver
 
     public function setConfig(array $config): self;
 
-    public function crawl(string $url, array $parameters): CrawlResult;
+    public function crawl(string $url, array $parameters = []): CrawlResult;
 }

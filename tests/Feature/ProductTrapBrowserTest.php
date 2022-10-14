@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Contracts\Config\Repository;
 use ProductTrap\Drivers\NullBrowserDriver;
+use ProductTrap\DTOs\CrawlResult;
 use ProductTrap\ProductTrapBrowser;
 
 it('can instantiate ProductTrap browser', function () {
@@ -43,12 +44,11 @@ it('throws an exception when a default browser driver hasn\'t been set in Produc
     $this->app->get(ProductTrapBrowser::class)->driver();
 })->throws(InvalidArgumentException::class, 'A default ProductTrap browser driver has not been configured');
 
-// it('can call `find` on a ProductTrap driver', function () {
-//     expect($this->app->get(ProductTrapBrowser::class)->driver('null')->find('abcdefg'))
-//         ->toBeInstanceOf(Product::class)
-//         ->identifier->toBe('abcdefg')
-//         ->status->toBe(Status::Unknown)
-//         ->status->description()->toBe('Unknown')
-//         ->sku->toBe('null')
-//         ->name->toBe('Null product');
-// });
+it('can call `crawl` on a ProductTrap browser driver', function () {
+    expect($this->app->get(ProductTrapBrowser::class)->driver('null')->crawl('https://example.org'))
+        ->toBeInstanceOf(CrawlResult::class)
+        ->result->toBe('Null HTML result')
+        ->data->toBe([
+            'this is a null browser result',
+        ]);
+});

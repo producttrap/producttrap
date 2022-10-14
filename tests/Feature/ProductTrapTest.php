@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Contracts\Config\Repository;
+use ProductTrap\Drivers\NullBrowserDriver;
 use ProductTrap\Drivers\NullDriver;
 use ProductTrap\DTOs\Brand;
 use ProductTrap\DTOs\Category;
@@ -118,4 +119,12 @@ it('can specify the current page of a ProductTrap driver in the context of a que
     expect($client)->toBeInstanceOf(NullDriver::class)
         ->getPage()->toBe(2)
         ->getLastPage()->toBe(4);
+});
+
+it('can specify the browser to be used when driver requires browser', function () {
+    $client = $this->app->get(ProductTrap::class)->driver('null');
+    $client->setBrowser($browser = new NullBrowserDriver());
+
+    expect(true)->toBeTrue();
+    // nothing to test
 });

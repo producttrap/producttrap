@@ -28,7 +28,7 @@ class NullBrowserDriver implements BrowserDriver
         return $this;
     }
 
-    public function crawl(string $url, array $parameters): CrawlResult
+    public function crawl(string $url, array $parameters = []): CrawlResult
     {
         return new CrawlResult(
             result: 'Null HTML result',
