@@ -15,9 +15,9 @@ class ScrapeResult extends DataTransferObject implements Serializable
         return (string) $this->result;
     }
 
-    public function serialize()
+    public function serialize(): string
     {
-        return json_encode([
+        return (string) json_encode([
             'result' => $this->result,
             'data' => $this->data,
         ]);
@@ -25,9 +25,9 @@ class ScrapeResult extends DataTransferObject implements Serializable
 
     public function unserialize(string $data)
     {
-        $data = json_decode($data, true);
+        $data = (array) json_decode($data, true);
 
-        $this->result = $data['result'];
-        $this->data = $data['data'];
+        $this->result = is_string($data['result']) ? $data['result'] : null;
+        $this->data = is_array($data['data']) ? $data['data'] : [];
     }
 }

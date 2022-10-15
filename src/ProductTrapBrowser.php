@@ -17,7 +17,7 @@ class ProductTrapBrowser extends Manager implements BrowserFactory
 
     public function getDefaultDriver(): string
     {
-        /** @var string|null $browser */
+        /** @var string|null $driver */
         $driver = $this->config->get('producttrap.browsers.default');
 
         if (! is_string($driver)) {
