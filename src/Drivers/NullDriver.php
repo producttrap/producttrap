@@ -8,7 +8,6 @@ use ProductTrap\Contracts\RequiresBrowser;
 use ProductTrap\Contracts\SupportsPagination;
 use ProductTrap\Contracts\SupportsSearches;
 use ProductTrap\DTOs\Brand;
-use ProductTrap\DTOs\ScrapeResult;
 use ProductTrap\DTOs\Product;
 use ProductTrap\DTOs\Query;
 use ProductTrap\DTOs\Results;
