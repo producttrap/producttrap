@@ -3,7 +3,7 @@
 namespace ProductTrap\Drivers;
 
 use ProductTrap\Contracts\BrowserDriver;
-use ProductTrap\DTOs\CrawlResult;
+use ProductTrap\DTOs\ScrapeResult;
 
 class NullBrowserDriver implements BrowserDriver
 {
@@ -28,9 +28,9 @@ class NullBrowserDriver implements BrowserDriver
         return $this;
     }
 
-    public function crawl(string $url, array $parameters = []): CrawlResult
+    public function crawl(string $url, array $parameters = []): ScrapeResult
     {
-        return new CrawlResult(
+        return new ScrapeResult(
             result: 'Null HTML result',
             data: [
                 'this is a null browser result',

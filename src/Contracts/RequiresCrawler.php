@@ -2,6 +2,6 @@
 
 namespace ProductTrap\Contracts;
 
-interface RequiresBrowser
+interface RequiresCrawler
 {
 }
