@@ -53,7 +53,7 @@ return [
         |
         */
 
-        'default' => env('PRODUCTTRAP_DEFAULT_BROWSER_DRIVER'),
+        'default' => env('PRODUCTTRAP_DEFAULT_BROWSER_DRIVER', 'basic_chromium'),
 
         /*
         |--------------------------------------------------------------------------
