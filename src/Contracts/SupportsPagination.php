@@ -19,17 +19,17 @@ namespace ProductTrap\Contracts;
  *
  *    while ($page < $driver->getLastPage()) {
  *        $results->merge(
- *            $driver->page($page++)->search($query, []),
+ *            $driver->setPage($page++)->search($query, []),
  *        );
+ *
+ *        echo "Scraped page {$driver->page()} of {$driver->lastPage()}"; // "Scraped page 2 / 4"
  *    }
  */
 interface SupportsPagination
 {
-    public function page(int $page): self;
+    public function setPage(int $page): self;
 
-    public function getPage(): int;
+    public function page(): int;
 
-    public function lastPage(int $page): self;
-
-    public function getLastPage(): int;
+    public function lastPage(): int;
 }
