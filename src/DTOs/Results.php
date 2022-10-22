@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ProductTrap\DTOs;
 
+use Illuminate\Support\Collection;
 use Spatie\DataTransferObject\Attributes\Strict;
 
 #[Strict]
@@ -31,5 +32,13 @@ class Results extends DataTransferObject
         $this->products = array_values($productsUnique);
 
         return $this;
+    }
+
+    /**
+     * @return Collection<string,Product>
+     */
+    public function collectProducts(): Collection
+    {
+        return Collection::make($this->products);
     }
 }
