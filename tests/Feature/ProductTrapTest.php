@@ -113,12 +113,12 @@ it('can call `search` on a ProductTrap driver and pass in a category query', fun
 it('can specify the current page of a ProductTrap driver in the context of a query', function () {
     $client = $this->app->get(ProductTrap::class)->driver('null');
 
-    $client->page(2);
-    $client->lastPage(4);
+    $client->setPage(2);
+    $client->setLastPage(4);
 
     expect($client)->toBeInstanceOf(NullDriver::class)
-        ->getPage()->toBe(2)
-        ->getLastPage()->toBe(4);
+        ->page()->toBe(2)
+        ->lastPage()->toBe(4);
 });
 
 it('can specify the browser to be used when driver requires browser', function () {

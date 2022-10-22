@@ -87,26 +87,26 @@ class NullDriver implements Driver, SupportsSearches, SupportsPagination, Requir
         );
     }
 
-    public function page(int $page): self
+    public function setPage(int $page): self
     {
         $this->page = $page;
 
         return $this;
     }
 
-    public function getPage(): int
+    public function page(): int
     {
         return $this->page;
     }
 
-    public function lastPage(int $lastPage): self
+    public function setLastPage(int $lastPage): self
     {
         $this->lastPage = $lastPage;
 
         return $this;
     }
 
-    public function getLastPage(): int
+    public function lastPage(): int
     {
         return $this->lastPage;
     }
