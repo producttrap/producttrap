@@ -94,8 +94,8 @@ Read more about Treeware at [treeware.earth][link-treeware].
 
 [ico-version]: https://img.shields.io/packagist/v/producttrap/producttrap.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-github-actions]: https://img.shields.io/github/workflow/status/producttrap/producttrap/Tests.svg?style=flat-square
-[ico-static-analysis]: https://img.shields.io/github/workflow/status/producttrap/producttrap/Static%20Analysis.svg?style=flat-square&label=Static%20Analysis
+[ico-github-actions]: https://img.shields.io/github/actions/workflow/status/producttrap/producttrap/tests.yml?branch=main&style=flat-square&label=Tests
+[ico-static-analysis]: https://img.shields.io/github/actions/workflow/status/producttrap/producttrap/static.yml?branch=main&style=flat-square&label=Static%20Analysis
 [ico-downloads]: https://img.shields.io/packagist/dt/producttrap/producttrap.svg?style=flat-square
 [ico-treeware-gifting]: https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen?style=flat-square
 
