@@ -34,8 +34,10 @@ class Product extends DataTransferObject
 
     public ?Brand $brand = null;
 
+    /** @var array<int, Image> */
     public array $images = [];
 
+    /** @var array<int, Category> */
     public array $categories = [];
 
     /** @var array<string, mixed> */
